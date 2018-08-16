@@ -20,6 +20,7 @@
       'BlurAdmin.pages.profile',
       'BlurAdmin.pages.authSignIn',
       'BlurAdmin.pages.authSignUp',
+      'BlurAdmin.pages.article'
     ])
     .config(routeConfig);
 
