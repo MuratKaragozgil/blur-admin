@@ -6,15 +6,13 @@
 
     /** @ngInject */
     function authSignInCtrl($scope, localStorage, $state, $http, toastr, restService) {
-        var vm = this;
+        let vm = this;
 
         vm.login = login;
 
-        let BASE_URL = "http://localhost:9090";
-
         function login() {
             if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
-                var dadosUser = {
+                let dadosUser = {
                     user: vm.username,
                     password: vm.password
                 };

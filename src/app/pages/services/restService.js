@@ -9,9 +9,18 @@
         .service('restService', restService);
 
     /** @ngInject */
-    function restService($http, nmUtils) {
+    function restService($http, nmUtils, localStorage) {
 
         let BASE_URL = "http://localhost:9090";
+
+        let token = localStorage.getObject('token');
+
+        let config = {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json;'
+            }
+        };
 
         function createToken(passPhrase) {
 
@@ -33,9 +42,17 @@
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 
+        function getAllArticles() {
+            let httpPromise = $http.get(BASE_URL + "/article/getAllArticles", config);
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
         return {
             createToken,
-            login
+            login,
+
+            // Article Methods
+            getAllArticles,
         }
     }
 

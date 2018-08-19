@@ -9,23 +9,11 @@
         .controller('ArticleListCtrl', ArticleListCtrl);
 
     /** @ngInject */
-    function ArticleListCtrl($scope, $filter, editableOptions, editableThemes, $http, localStorage) {
+    function ArticleListCtrl($scope, restService, $filter, editableOptions, editableThemes) {
 
-        var token = localStorage.getObject('token');
-
-        let BASE_URL = "http://localhost:9090";
-
-        var config = {
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json;'
-            }
-        };
-
-        $http.get(BASE_URL + "/article/getAllArticles", config).then(function (response) {
-            console.log(response.data.data);
-
-            $scope.articleTableData = response.data.data;
+        restService.getAllArticles().then(function (response) {
+            console.log(response);
+            $scope.articleTableData = response;
         });
 
         $scope.articleTableData = [];
