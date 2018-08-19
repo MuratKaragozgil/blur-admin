@@ -15,7 +15,7 @@
                 url: '/article',
                 template: '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
                 abstract: true,
-                controller: 'ArticleListCtrl',
+                controller: 'ArticleCtrl',
                 title: 'Article',
                 sidebarMeta: {
                     icon: 'ion-grid',
@@ -26,9 +26,16 @@
             url: '/all-articles',
             templateUrl: 'app/pages/article/article-list.html',
             title: 'All Articles',
+            controller: 'ArticleListCtrl',
             sidebarMeta: {
                 order: 0,
             },
+            authenticate: true
+        }).state('main.article.create', {
+            url: '/create-article',
+            templateUrl: 'app/pages/article/article-create.html',
+            title: 'Create Article',
+            controller: 'ArticleCreateCtrl',
             authenticate: true
         });
 
