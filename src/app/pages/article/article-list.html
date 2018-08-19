@@ -22,6 +22,9 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="align-right" ng-if="bigTotalItems > itemsPerPage">
+                    <ul uib-pagination total-items="bigTotalItems" items-per-page="itemsPerPage" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm align-right" boundary-links="true" num-pages="numPages"></ul>
+                </div>
             </div>
         </div>
     </div>
