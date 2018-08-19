@@ -1,0 +1,57 @@
+<div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+    <form>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" ng-model="article.title">
+        </div>
+
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" id="author" placeholder="Author" ng-model="article.author">
+        </div>
+
+        <div class="form-group">
+            <label for="interval">Interval</label>
+            <ui-select ng-model="article.interval"
+                       class="btn-group bootstrap-select form-control"
+                       ng-disabled="false"
+                       id="interval"
+                       append-to-body="true"
+                       search-enabled="true">
+                <ui-select-match placeholder="Select Interval">
+                    <span> {{article.interval.label}}</span>
+                </ui-select-match>
+                <ui-select-choices repeat="interval in intervals | filter: $select.search">
+                    <span ng-bind-html="interval.label"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryIds">Category</label>
+            <ui-select multiple ng-model="article.categoryIds"
+                       class="form-control"
+                       ng-disabled="false"
+                       id="categoryIds"
+                       append-to-body="true"
+                       search-enabled="true">
+                <ui-select-match placeholder="Select Category IDs">
+                    <span> {{$item.name}}</span>
+                </ui-select-match>
+                <ui-select-choices repeat="category in catalogCategories | filter: $select.search">
+                    <span ng-bind-html="category.name"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea placeholder="Description" class="form-control" id="description"
+                      ng-model="article.description"></textarea>
+        </div>
+
+        <div class="align-right">
+            <button type="button" class="btn btn-primary btn-raised btn-lg" ng-click="save()">Save</button>
+        </div>
+    </form>
+</div>
