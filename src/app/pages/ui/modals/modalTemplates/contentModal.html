@@ -1,0 +1,62 @@
+<div class="modal-content">
+    <div class="modal-header bg-success">
+        <i class="ion-flame modal-icon"></i><span>Content</span>
+    </div>
+    <div class="modal-body">
+        <div class="row form-control">
+            <label class="col-md-2">Type</label>
+            <select ng-model="content.type" ng-change="contentTypeChanged()">
+                <option ng-repeat="x in contentTypes" value="{{x.value}}">{{x.label}}</option>
+            </select>
+        </div>
+        <div class="row form-control" ng-if="content.type === 'TEXT'">
+            <label class="col-md-2">Punto</label>
+            <input type="text" class="col-md-6" id="punto" placeholder="10" ng-model="content.punto">
+        </div>
+        <div class="row form-control" ng-if="content.type === 'TEXT'">
+            <label class="col-md-2">Style</label>
+            <input type="text" class="col-md-6" id="style" placeholder="10" ng-model="content.style">
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row form-control" ng-if="content.type === 'TEXT'">
+            <label class="col-md-2">Align</label>
+            <input type="text" class="col-md-6" id="align" placeholder="10" ng-model="content.align">
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row form-control" ng-if="content.type === 'TEXT'">
+            <label class="col-md-2">Text</label>
+            <input type="text" class="col-md-6" id="text" placeholder="text" ng-model="content.text">
+            <div class="col-md-1"></div>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="addValueToArray(content.textvalue, content.text)">Add
+            </button>
+            <div class="col-sm-10" ng-repeat="text in content.textValue">{{text}}</div>
+        </div>
+
+        <div class="row form-control" ng-if="content.type === 'IMAGE'">
+            <label class="col-md-2">Image</label>
+            <input type="text" class="col-md-6" id="Image" placeholder="text" ng-model="content.text">
+            <div class="col-md-1"></div>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="addValueToArray(content.text)">Add
+            </button>
+            <div class="col-sm-10" ng-repeat="text in content.textValue">{{text}}</div>
+        </div>
+
+        <div class="row form-control" ng-if="content.type === 'LINK'">
+            <label class="col-md-2">Link</label>
+            <input type="text" class="col-md-6" id="link" placeholder="text" ng-model="content.url">
+            <div class="col-md-1"></div>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="addValueToArray(content.urlValue, content.url)">Add
+            </button>
+            <div class="col-sm-10" ng-repeat="text in content.textValue">{{text}}</div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+        <button type="button" class="btn btn-success" ng-click="save()">Save</button>
+    </div>
+</div>

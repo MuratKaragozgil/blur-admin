@@ -50,6 +50,55 @@
                       ng-model="article.description"></textarea>
         </div>
 
+        <div class="form-group">
+            <label><b>Contents</b></label>
+            <div class="warning" ng-if="article.content.length === 0">There are no content yet!</div>
+            <div class="horizontal-scroll" ng-if="article.content.length !== 0">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="align-right">Type</th>
+                        <th class="align-right">Punto</th>
+                        <th class="align-right">Style</th>
+                        <th class="align-right">Align</th>
+                        <th class="align-right">Text Value</th>
+                        <th class="align-right">Image Value</th>
+                        <th class="align-right">Url Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="content in article.content">
+                        <td class="align-right">{{content.type}}</td>
+                        <td class="align-right">{{content.punto}}</td>
+                        <td class="align-right">{{content.style}}</td>
+                        <td class="align-right">{{content.align}}</td>
+                        <td class="align-right">
+                            <select>
+                                <option ng-repeat="x in content.textValue">{{x}}</option>
+                            </select>
+                        </td>
+                        <td class="align-right">
+                            <select>
+                                <option ng-repeat="x in content.imageValue">{{x}}</option>
+                            </select>
+                        </td>
+                        <td class="align-right">
+                            <select>
+                                <option ng-repeat="x in content.urlValue">{{x}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="align-right">
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                        ng-click="open('app/pages/ui/modals/modalTemplates/contentModal.html', 'lg')">Add Content
+                </button>
+            </div>
+        </div>
+
         <div class="align-right">
             <button type="button" class="btn btn-primary btn-raised btn-lg" ng-click="save()">Save</button>
         </div>

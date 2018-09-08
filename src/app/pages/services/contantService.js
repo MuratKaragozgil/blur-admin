@@ -24,13 +24,25 @@
 
         ];
 
+        let contentTypes = [
+            {label: "Text", value: "TEXT"},
+            {label: "Image", value: "IMAGE"},
+            {label: "Link", value: "LINK"},
+            {label: "Line", value: "LINE"},
+            // TODO may be added improvement type later
+        ];
+
         function getInterval() {
             return intervalList;
         }
 
+        function getContentTypes() {
+            return contentTypes;
+        }
 
         return {
-            getInterval
+            getInterval,
+            getContentTypes
         }
     }
 }());
