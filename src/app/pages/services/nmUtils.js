@@ -34,8 +34,8 @@
         }
 
         function errorCallback(response) {
-            if (response.data && response.data.errors) {
-                return $q.reject(response.data.errors);
+            if (response.data && response.data.errors && response.data.errors.message) {
+                return $q.reject(response.data.errors.message);
             } else {
                 return $q.reject("An unexpected error occurred! Please try again later!");
             }

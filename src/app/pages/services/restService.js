@@ -11,7 +11,7 @@
     /** @ngInject */
     function restService($http, nmUtils) {
 
-        let BASE_URL = "http://localhost:9090";
+        let BASE_URL = "http://localhost:9091";
 
         function createToken(passPhrase) {
 
@@ -29,7 +29,7 @@
                 "password": passWord
             };
 
-            let httpPromise = $http.post(BASE_URL + "/auth/login", data);
+            let httpPromise = $http.post(BASE_URL + "/auth/admin-login", data);
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 

@@ -12,6 +12,9 @@
 
         let BASE_URL = "http://localhost:9090";
 
+        vm.username = "9050745999824";
+        vm.password = "murat";
+
         function login() {
             if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
                 var dadosUser = {
