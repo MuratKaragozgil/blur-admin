@@ -5,34 +5,27 @@
         .controller('authSignInCtrl', authSignInCtrl);
 
     /** @ngInject */
-    function authSignInCtrl($scope, localStorage, $state, $http, toastr, restService) {
+    function authSignInCtrl($scope, localStorage, $state, $http, toastr, restService, sessionStorage) {
         var vm = this;
 
         vm.login = login;
 
         let BASE_URL = "http://localhost:9090";
 
-        vm.username = "9050745999824";
+        vm.username = "905302682487";
         vm.password = "murat";
 
         function login() {
             if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
-                var dadosUser = {
+                let dadosUser = {
                     user: vm.username,
                     password: vm.password
                 };
 
                 restService.login(vm.username, vm.password).then(function (result) {
-                    localStorage.setObject('passphrase', dadosUser);
+                    sessionStorage.set('token', result.access_token);
 
-                    restService.createToken(result.passphrase).then(function (result) {
-                        localStorage.setObject('token',  result.access_token);
-
-                        $state.go('main.dashboard');
-                    }, function (error) {
-                        console.error(error);
-                    });
-
+                    $state.go('main.dashboard');
                 }, function (result) {
                     toastr.error(result, 'Error');
                     console.log(result);

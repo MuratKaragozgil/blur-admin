@@ -10,13 +10,13 @@
 
   /** @ngInject */
   function localStorage($window) {
-    var service = {
+    let service = {
       set: set,
       get: get,
       setObject: setObject,
       getObject: getObject,
       clear: clear
-    }
+    };
 
     return service;
 
