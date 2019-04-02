@@ -9,7 +9,7 @@
         .service('restService', restService);
 
     /** @ngInject */
-    function restService($http, nmUtils) {
+    function restService($http, nmUtils, sessionStorage) {
 
         let BASE_URL = "http://localhost:9091";
 
@@ -33,9 +33,24 @@
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 
+        function getAllUsers() {
+            let token = sessionStorage.get('token');
+
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json;'
+                }
+            };
+            let httpPromise = $http.get(BASE_URL + "/user/get-all-users", config);
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
         return {
             createToken,
-            login
+            login,
+
+            getAllUsers
         }
     }
 

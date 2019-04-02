@@ -10,8 +10,6 @@
 
         vm.login = login;
 
-        let BASE_URL = "http://localhost:9090";
-
         vm.username = "905302682487";
         vm.password = "murat";
 
@@ -23,7 +21,7 @@
                 };
 
                 restService.login(vm.username, vm.password).then(function (result) {
-                    sessionStorage.set('token', result.access_token);
+                    sessionStorage.set('token', result.data.data.access_token);
 
                     $state.go('main.dashboard');
                 }, function (result) {

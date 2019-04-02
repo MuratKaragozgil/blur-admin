@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel ba-panel-class="with-scroll">
+            <div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                    <label>Rows on page
+                        <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                ng-model="userTableDataPageSize" ng-options="i for i in [5,10,15,20,25]">
+                        </select>
+                    </label>
+                </div>
+                <table class="table" st-table="smartTableData">
+                    <thead>
+                    <tr class="sortable ">
+                        <th class="table-id" st-sort="id" st-sort-default="true"></th>
+                        <th st-sort="username">Username</th>
+                        <th st-sort="fullName">FullName</th>
+                        <th st-sort="email">E-mail</th>
+                        <th st-sort="gender">Gender</th>
+                        <th st-sort="birthDate">Birth Date</th>
+                        <th st-sort="enabled">Enabled</th>
+                        <th st-sort="privateAccount">Private Account</th>
+                        <th st-sort="allowEvidence">Allow Evidence</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th><input st-search="username" placeholder="Search User Name"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="fullName" placeholder="Search Full Name"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                        <th><input st-search="email" placeholder="Search Email"
+                                   class="input-sm form-control search-input"
+                                   type="search"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in userTableData">
+                        <td class="table-id">{{item.id}}</td>
+                        <td>{{item.username}}</td>
+                        <td>{{item.fullName}}</td>
+                        <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
+                        <td>{{item.gender}}</td>
+                        <td>{{item.birthDate}}</td>
+                        <td>{{item.enabled}}</td>
+                        <td>{{item.privateAccount}}</td>
+                        <td>{{item.allowEvidence}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div st-pagination="" st-items-by-page="userTableDataPageSize" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
