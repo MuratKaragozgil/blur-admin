@@ -10,14 +10,8 @@
 
     /** @ngInject */
     function UserListCtrl($scope, $filter, editableOptions, editableThemes, $http, sessionStorage, restService, userList) {
-
-        console.log(userList);
-
         $scope.userTableData = userList.data;
         $scope.userTableDataPageSize = 10;
-
-        $scope.userTableDataSize = 10;
-
     }
 
 })();
