@@ -9,9 +9,13 @@
         .controller('UserListCtrl', UserListCtrl);
 
     /** @ngInject */
-    function UserListCtrl($scope, $filter, editableOptions, editableThemes, $http, sessionStorage, restService, userList) {
+    function UserListCtrl($scope, $filter, editableOptions, editableThemes, $state, sessionStorage, restService, userList) {
         $scope.userTableData = userList.data;
         $scope.userTableDataPageSize = 10;
+
+        $scope.createUser = function () {
+            $state.go('main.user.create');
+        }
     }
 
 })();

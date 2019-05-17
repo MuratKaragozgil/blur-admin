@@ -13,16 +13,16 @@
         vm.username = "905302682487";
         vm.password = "murat";
 
+        function saveCredentials(username, password) {
+            sessionStorage.set('username', username);
+            sessionStorage.set('password', password);
+        }
+
         function login() {
             if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
-                let dadosUser = {
-                    user: vm.username,
-                    password: vm.password
-                };
-
                 restService.login(vm.username, vm.password).then(function (result) {
                     sessionStorage.set('token', result.data.data.access_token);
-
+                    saveCredentials(vm.username, vm.password);
                     $state.go('main.dashboard');
                 }, function (result) {
                     toastr.error(result, 'Error');

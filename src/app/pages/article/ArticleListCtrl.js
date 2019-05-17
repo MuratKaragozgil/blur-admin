@@ -3,7 +3,6 @@
  * created on 16.12.2015
  */
 (function () {
-    'use strict';
 
     angular.module('BlurAdmin.pages.article')
         .controller('ArticleListCtrl', ArticleListCtrl);
@@ -13,7 +12,7 @@
 
         var token = localStorage.getObject('token');
 
-        let BASE_URL = "http://localhost:9090";
+        var BASE_URL = "http://localhost:9090";
 
         var config = {
             headers: {

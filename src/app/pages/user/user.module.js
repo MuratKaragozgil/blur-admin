@@ -35,6 +35,12 @@
                 }
             },
             authenticate: true
+        }).state('main.user.create', {
+            url: '/create-user',
+            templateUrl: 'app/pages/user/create-user.html',
+            controller: 'CreateUserCtrl',
+            title: 'Create User',
+            authenticate: true
         });
 
         $urlRouterProvider.when('/main/tables', '/main/tables/basic');

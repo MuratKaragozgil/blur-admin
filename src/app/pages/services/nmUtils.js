@@ -7,9 +7,9 @@
     angular.module('BlurAdmin.pages.services')
         .factory('nmUtils', nmUtils);
 
-    nmUtils.$inject = ['$http', '$q', '$timeout'];
+    nmUtils.$inject = ['$http', '$q', '$timeout', '$state', 'sessionStorage', 'toastr'];
 
-    function nmUtils($http, $q, $timeout) {
+    function nmUtils($http, $q, $timeout, $state, sessionStorage, toastr) {
 
         function dateToUTCDate(date) {
             return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -34,8 +34,12 @@
         }
 
         function errorCallback(response) {
-            if (response.data && response.data.errors && response.data.errors.message) {
-                return $q.reject(response.data.errors.message);
+            if (response.data && response.data.error && response.data.message) {
+                toastr.error(response.data.message, 'Error');
+                return $q.reject(response.data.message);
+            } else if (response.data && response.data.errors && response.data.errors.message) {
+                toastr.error(response.data.errors.message, 'Error');
+                return $q.reject(response.data.message);
             } else {
                 return $q.reject("An unexpected error occurred! Please try again later!");
             }

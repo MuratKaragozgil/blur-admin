@@ -3,16 +3,15 @@
  * created on 29/06/2017
  */
 (function () {
-    'use strict';
 
     angular.module('BlurAdmin.pages.services')
         .service('sessionStorage', sessionStorage);
 
     /** @ngInject */
     function sessionStorage($window) {
-        let sessionStorage = $window.sessionStorage;
+        var sessionStorage = $window.sessionStorage;
 
-        let service = {
+        var service = {
             set: set,
             get: get,
             clear: clear

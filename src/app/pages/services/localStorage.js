@@ -3,14 +3,13 @@
  * created on 29/06/2017
  */
 (function() {
-  'use strict';
 
   angular.module('BlurAdmin.pages.services')
     .service('localStorage', localStorage);
 
   /** @ngInject */
   function localStorage($window) {
-    let service = {
+    var service = {
       set: set,
       get: get,
       setObject: setObject,
