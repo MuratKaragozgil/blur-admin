@@ -5,14 +5,14 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.article')
-        .controller('ArticleCreateCtrl', ArticleCreateCtrl);
+    angular.module('BlurAdmin.pages.activity')
+        .controller('ActivityCreateCtrl', ActivityCreateCtrl);
 
     /** @ngInject */
-    function ArticleCreateCtrl($scope, restService, $state, constantService, toastr, $uibModal) {
-        console.log("ArticleCreate::invoked!");
+    function ActivityCreateCtrl($scope, restService, $state, constantService, toastr, $uibModal) {
+        console.log("ActivityCreate::invoked!");
 
-        $scope.article = {
+        $scope.activity = {
             content: []
         };
 
@@ -23,21 +23,14 @@
         });
 
         $scope.save = function () {
-            restService.saveArticle($scope.article).then(function (result) {
-                toastr.success("Article created successfully!", 'Success');
-                $state.go('main.article.list');
+            restService.saveActivity($scope.activity).then(function (result) {
+                toastr.success("Activity created successfully!", 'Success');
+                $state.go('main.activity.list');
             }, function (error) {
                 console.error(error);
             });
         };
 
-
-        /**
-         * CONTENT CREATION
-         * @param $scope
-         * @param $uibModalInstance
-         * Creates a dialog to adding new content. If content validation is success and parameters is correct, then returns a content variable.
-         */
 
         let ContentDialogController = function ($scope, $uibModalInstance, constantService) {
             let init = function () {
@@ -99,7 +92,7 @@
             });
 
             modalInstance.result.then(function (result) {
-                $scope.article.content.push(result);
+                $scope.activity.content.push(result);
             })
         };
     }

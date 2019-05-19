@@ -10,6 +10,9 @@
 
         vm.login = login;
 
+        vm.username = "m.karagozgil@gmail.com";
+        vm.password = "murat";
+
         function login() {
             if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
                 let dadosUser = {

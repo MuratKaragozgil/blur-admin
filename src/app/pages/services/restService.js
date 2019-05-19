@@ -12,16 +12,20 @@
     function restService($http, nmUtils, localStorage) {
         console.log("RestService::invoked!");
 
-        let BASE_URL = "http://localhost:9090";
+        let BASE_URL = "http://18.217.232.13";
 
-        let token = localStorage.getObject('token');
+        function getConfig() {
+            let token = localStorage.getObject('token');
 
-        let config = {
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json;'
-            }
-        };
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json;'
+                }
+            };
+
+            return config;
+        }
 
         function createToken(passPhrase) {
 
@@ -48,7 +52,7 @@
          */
 
         function getAllArticles() {
-            let httpPromise = $http.get(BASE_URL + "/article/getAllArticles", config);
+            let httpPromise = $http.get(BASE_URL + "/article/getAllArticles", getConfig());
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 
@@ -65,7 +69,40 @@
                 categoryIds: categoryIds
             };
 
-            let httpPromise = $http.put(BASE_URL + "/article/addNewArticle", data, config);
+            let httpPromise = $http.put(BASE_URL + "/article/addNewArticle", data, getConfig());
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
+        /**
+         * Activity Endpoints
+         */
+
+        function getAllActivities() {
+            let httpPromise = $http.get(BASE_URL + "/catalog/getAllCatalogActivities", getConfig());
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
+        function deleteActivity(id) {
+            let httpPromise = $http.delete(BASE_URL + "/catalog/deleteCatalogActivity/" + id, getConfig());
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
+        function saveActivity(activity) {
+            let categoryIds = activity.categoryIds.map(function (item) {
+                return item['id'];
+            });
+
+            let data = {
+                title: activity.title,
+                description: activity.description,
+                subTitle: activity.subTitle,
+                materials: activity.materials,
+                author: activity.author,
+                interval: activity.interval,
+                categoryIds: categoryIds
+            };
+
+            let httpPromise = $http.put(BASE_URL + "/catalog/addNewCatalogActivity", data, getConfig());
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 
@@ -74,7 +111,7 @@
          */
 
         function getAllCatalogCategories() {
-            let httpPromise = $http.get(BASE_URL + "/catalog/getAllCatalogCategories", config);
+            let httpPromise = $http.get(BASE_URL + "/catalog/getAllCatalogCategories", getConfig());
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 
@@ -88,6 +125,11 @@
 
             // Catalog Category Methods
             getAllCatalogCategories,
+
+            // Activity Methods
+            getAllActivities,
+            deleteActivity,
+            saveActivity
         }
     }
 

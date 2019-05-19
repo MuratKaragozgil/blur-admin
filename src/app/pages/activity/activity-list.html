@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="align-right">
+            <button type="button" class="btn btn-primary btn-raised" ng-click="createArticle()">Create Activity</button>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-top: 5px">
+    <div class="col-md-12">
+        <div ba-panel ba-panel-class="with-scroll">
+            <div class="horizontal-scroll">
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="black-muted-bg">
+                        <th>ID</th>
+                        <th class="col-md-2">Title</th>
+                        <th class="col-md-2">Sub Title</th>
+                        <th class="col-md-5">Description</th>
+                        <th>Materials</th>
+                        <th>Interval</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in activityTableData" class="no-top-border">
+                        <td>{{item.id}}</td>
+                        <td class="col-md-2">{{item.title}}</td>
+                        <td class="col-md-2">{{item.subTitle}}</td>
+                        <td class="col-md-5">{{item.description}}</td>
+                        <td>{{item.materials}}</td>
+                        <td>{{item.interval}}</td>
+                        <td><i class="ion-trash-a" ng-click="deleteActivity(item.id, $index)"></i></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--<div class="align-right" ng-if="bigTotalItems > itemsPerPage">-->
+                    <!--<ul uib-pagination total-items="bigTotalItems" items-per-page="itemsPerPage" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm align-right" boundary-links="true" num-pages="numPages"></ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>

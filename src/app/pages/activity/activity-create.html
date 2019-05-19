@@ -1,0 +1,116 @@
+<div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+    <form>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Title" ng-model="activity.title">
+        </div>
+
+        <div class="form-group">
+            <label for="subTitle">Sub Title</label>
+            <input type="text" class="form-control" id="subTitle" placeholder="Sub Title" ng-model="activity.subTitle">
+        </div>
+
+        <div class="form-group">
+            <label for="subTitle">Materials</label>
+            <input type="text" class="form-control" id="materials" placeholder="Materials" ng-model="activity.materials">
+        </div>
+
+        <div class="form-group">
+            <label for="interval">Interval</label>
+            <input type="text" class="form-control" id="interval" placeholder="4-6" ng-model="activity.interval">
+        </div>
+
+        <!--<div class="form-group">-->
+            <!--<label for="interval">Interval</label>-->
+            <!--<ui-select ng-model="activity.interval"-->
+                       <!--class="btn-group bootstrap-select form-control"-->
+                       <!--ng-disabled="false"-->
+                       <!--id="interval"-->
+                       <!--append-to-body="true"-->
+                       <!--search-enabled="true">-->
+                <!--<ui-select-match placeholder="Select Interval">-->
+                    <!--<span> {{activity.interval.label}}</span>-->
+                <!--</ui-select-match>-->
+                <!--<ui-select-choices repeat="interval in intervals | filter: $select.search">-->
+                    <!--<span ng-bind-html="interval.label"></span>-->
+                <!--</ui-select-choices>-->
+            <!--</ui-select>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <label for="categoryIds">Category</label>
+            <ui-select multiple ng-model="activity.categoryIds"
+                       class="form-control"
+                       ng-disabled="false"
+                       id="categoryIds"
+                       append-to-body="true"
+                       search-enabled="true">
+                <ui-select-match placeholder="Select Category IDs">
+                    <span> {{$item.name}}</span>
+                </ui-select-match>
+                <ui-select-choices repeat="category in catalogCategories | filter: $select.search">
+                    <span ng-bind-html="category.name"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea placeholder="Description" class="form-control" id="description"
+                      ng-model="activity.description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label><b>Contents</b></label>
+            <div class="warning" ng-if="activity.content.length === 0">There are no content yet!</div>
+            <div class="horizontal-scroll" ng-if="activity.content.length !== 0">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="align-right">Type</th>
+                        <th class="align-right">Punto</th>
+                        <th class="align-right">Style</th>
+                        <th class="align-right">Align</th>
+                        <th class="align-right">Text Value</th>
+                        <th class="align-right">Image Value</th>
+                        <th class="align-right">Url Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="content in activity.content">
+                        <td class="align-right">{{content.type}}</td>
+                        <td class="align-right">{{content.punto}}</td>
+                        <td class="align-right">{{content.style}}</td>
+                        <td class="align-right">{{content.align}}</td>
+                        <td class="align-right">
+                            <select>
+                                <option ng-repeat="x in content.textValue">{{x}}</option>
+                            </select>
+                        </td>
+                        <td class="align-right">
+                            <select>
+                                <option ng-repeat="x in content.imageValue">{{x}}</option>
+                            </select>
+                        </td>
+                        <td class="align-right">
+                            <select>
+                                <option ng-repeat="x in content.urlValue">{{x}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="align-right">
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                        ng-click="open('app/pages/ui/modals/modalTemplates/contentModal.html', 'lg')">Add Content
+                </button>
+            </div>
+        </div>
+
+        <div class="align-right">
+            <button type="button" class="btn btn-primary btn-raised btn-lg" ng-click="save()">Save</button>
+        </div>
+    </form>
+</div>
