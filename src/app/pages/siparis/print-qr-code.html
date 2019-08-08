@@ -1,18 +1,33 @@
-<div id="qrcode"></div>
-<script src="qr-code-min.js"></script>
+<div style="transform: rotate(-90deg);margin-left: 30px">
+    <div id="qrcode"></div>
+    <div id="id"></div>
+    <div id="telefon"></div>
+    <div id="address"></div>
+    <div id="tarih"></div>
+</div>
+
+<script src="/app/pages/siparis/js/qr-code-min.js"></script>
 <script type="text/javascript">
     var url_string = window.location.href; //window.location.href
     var url = new URL(url_string);
     var c = url.searchParams.get("c");
-    console.log(c);
+    var telefon = url.searchParams.get("telefon");
+    var id = url.searchParams.get("id");
+    var adress = url.searchParams.get("address");
+    var tarih = "2019-08-08 12-12";
+
+    document.getElementById("id").innerText = id;
+    document.getElementById("telefon").innerText = telefon;
+    document.getElementById("address").innerText = adress;
+    document.getElementById("tarih").innerText = tarih;
 
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: c,
-        width: 128,
-        height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
+        width: 75,
+        height: 75,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
     });
     window.print();
 </script>
@@ -20,10 +35,11 @@
 <style>
     @media print {
         @page {
-            size: 128px 128px;
+            size: 75px 75px;
             margin: 0;
             padding: 0;
         }
+
         html, body {
             position: relative;
             width: 100%;
@@ -33,6 +49,7 @@
             margin: 0;
             padding: 0;
         }
+
         svg {
             width: 100%;
             height: 100%;
