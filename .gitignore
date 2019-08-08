@@ -49,3 +49,5 @@ node_modules
 gulp.1
 build
 .tmp
+
+/bower_components
