@@ -14,7 +14,14 @@
         vm.password = "murat";
 
         function login() {
-            if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
+
+            if (true) {
+                localStorage.setObject('passphrase', "passphrase");
+                localStorage.setObject('token',  "token");
+                $state.go('main.dashboard');
+            }
+            // TODO authentication will be write
+            else if (checkLoginParameters(vm.username) && checkLoginParameters(vm.password)) {
                 let dadosUser = {
                     user: vm.username,
                     password: vm.password

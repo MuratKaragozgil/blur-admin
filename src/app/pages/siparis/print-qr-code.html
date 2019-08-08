@@ -1,0 +1,43 @@
+<div id="qrcode"></div>
+<script src="http://localhost:3001/app/pages/siparis/js/qrcode_min.js"></script>
+<script type="text/javascript">
+    var url_string = window.location.href; //window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("c");
+    console.log(c);
+
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: c,
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+    window.print();
+</script>
+
+<style>
+    @media print {
+        @page {
+            size: 128px 128px;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 97%;
+            margin: 0;
+            padding: 0;
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+</style>

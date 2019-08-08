@@ -48,6 +48,15 @@
         }
 
         /**
+         *  Siparis Endpoints
+         */
+        function getAllSiparis() {
+            let httpPromise = $http.get(BASE_URL + "/siparis/get-all-siparis", getConfig());
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
+
+        /**
          *  Article Endpoints
          */
 
@@ -129,7 +138,10 @@
             // Activity Methods
             getAllActivities,
             deleteActivity,
-            saveActivity
+            saveActivity,
+
+            // Siparis Methods
+            getAllSiparis
         }
     }
 

@@ -20,7 +20,7 @@
         }
 
         function responseCallback(response) {
-            return response.data.data;
+            return response.data;
         }
 
         function singleFieldResponseCallback(fieldName) {
