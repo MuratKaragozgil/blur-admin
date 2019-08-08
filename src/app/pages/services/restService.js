@@ -12,7 +12,7 @@
     function restService($http, nmUtils, localStorage) {
         console.log("RestService::invoked!");
 
-        let BASE_URL = "http://18.217.232.13";
+        let BASE_URL = "http://18.217.232.13/barcode";
 
         function getConfig() {
             let token = localStorage.getObject('token');
