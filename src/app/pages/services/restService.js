@@ -55,6 +55,14 @@
             return nmUtils.handleSimpleHttpResponse(httpPromise);
         }
 
+        function getFileUrl(orderIdList) {
+            let data = {
+                orderIdList: orderIdList
+            };
+            let httpPromise = $http.post(BASE_URL + "/siparis/get-qr-list", data, getConfig());
+            return nmUtils.handleSimpleHttpResponse(httpPromise);
+        }
+
 
         /**
          *  Article Endpoints
@@ -141,7 +149,8 @@
             saveActivity,
 
             // Siparis Methods
-            getAllSiparis
+            getAllSiparis,
+            getFileUrl
         }
     }
 

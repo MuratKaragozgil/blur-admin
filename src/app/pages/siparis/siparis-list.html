@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="align-right">
-            <button type="button" class="btn btn-primary btn-raised" ng-click="createArticle()">Siparis Olustur</button>
+            <button type="button" class="btn btn-primary btn-raised" ng-click="printAllSelected()">Print All Selected</button>
         </div>
     </div>
 </div>
@@ -18,6 +18,7 @@
                         <th>E-Posta</th>
                         <th>Telefon</th>
                         <th>Odeme Tipi</th>
+                        <th>Selection</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -29,7 +30,10 @@
                         <td>{{item.telefon}}</td>
                         <td>{{item.odeme_tipi}}</td>
                         <td>
-                            <a href="/print-qr-code.html?c={{item.id}}&id={{item.id}}&telefon={{item.telefon}}&address={{item.adres}}" target="_blank">Print</a>
+                            <input type="checkbox" id="checkboxSuccess" ng-click="checkBoxSelected(item)">
+                        </td>
+                        <td>
+                            <a ng-click="getQrCodeList([item.id])">Print</a>
                         </td>
                     </tr>
                     </tbody>

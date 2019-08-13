@@ -11,6 +11,8 @@
       'BlurAdmin.pages.config',
       'BlurAdmin.pages.main',
       'BlurAdmin.pages.dashboard',
+      'BlurAdmin.pages.authSignIn',
+
       // 'BlurAdmin.pages.ui',
       // 'BlurAdmin.pages.components',
       // 'BlurAdmin.pages.form',
@@ -18,10 +20,10 @@
       // 'BlurAdmin.pages.charts',
       // 'BlurAdmin.pages.maps',
       // 'BlurAdmin.pages.profile',
-      'BlurAdmin.pages.authSignIn',
       // 'BlurAdmin.pages.authSignUp',
       // 'BlurAdmin.pages.article',
       // 'BlurAdmin.pages.activity',
+
       'BlurAdmin.pages.siparis'
     ])
     .config(routeConfig);

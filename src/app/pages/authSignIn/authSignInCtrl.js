@@ -33,7 +33,7 @@
                     restService.createToken(result.passphrase).then(function (result) {
                         localStorage.setObject('token',  result.access_token);
 
-                        $state.go('main.dashboard');
+                        $state.go('main.siparis');
                     }, function (error) {
                         console.error(error);
                     });

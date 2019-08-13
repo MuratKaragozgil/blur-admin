@@ -9,15 +9,34 @@
         .controller('SiparisListCtrl', SiparisListCtrl);
 
     /** @ngInject */
-    function SiparisListCtrl($scope, restService, $state, siparisList) {
+    function SiparisListCtrl($scope, restService, $state, siparisList, $window) {
         console.log("SiparisListCtrl::invoked!");
         $scope.siparisTableData = siparisList;
 
-        let getAllActivities = function () {
-            restService.getAllActivities().then(function (response) {
-                $scope.siparisTableData = response;
-                $scope.bigTotalItems = response.length;
-            });
+        $scope.checkBoxSelected = function(item) {
+          if (item.checked) {
+              item.checked = false;
+          }   else {
+              item.checked = true;
+          }
+        };
+
+        $scope.printAllSelected = function() {
+            var idList = [];
+            for(let i=0; i< $scope.siparisTableData.length; i++) {
+                if ($scope.siparisTableData[i].checked) {
+                    idList.push($scope.siparisTableData[i].id);
+                }
+            }
+            $scope.getQrCodeList(idList);
+
+        };
+
+        $scope.getQrCodeList = function(orderIdList) {
+            restService.getFileUrl(orderIdList).then(function (res) {
+                console.log(res);
+                $window.open(res.url, "_blank");
+            })
         };
 
         $scope.printQrCode = function(item) {
